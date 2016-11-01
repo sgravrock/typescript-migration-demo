@@ -1,4 +1,4 @@
-define(function() {
+define(["./taskController"], function(TaskController) {
   "use strict";
   var template =
     '<input type="text" class="new-task-name" placeholder="new task">' +
@@ -46,7 +46,7 @@ define(function() {
 
   TodoController.prototype._addTaskToDom = function(title, index) {
     var that = this;
-    var taskController = new TodoMvc.TaskController(title);
+    var taskController = new TaskController(title);
     taskController.appendTo(this._list);
 
     taskController.onRemove = function() {

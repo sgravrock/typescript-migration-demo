@@ -1,4 +1,4 @@
-(function() {
+define(function() {
   "use strict";
   var template =
     '<span class="title"></span>' +
@@ -30,5 +30,5 @@
   TaskController.prototype.onRemove = function(parent) {
   };
 
-  TodoMvc.TaskController = TaskController;
-}());
+  return TaskController;
+});
