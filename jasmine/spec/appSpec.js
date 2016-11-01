@@ -1,4 +1,4 @@
-define(["../../app"], function(app) {
+define(["../../scripts/app"], function(app) {
   describe("app", function() {
     "use strict";
 
