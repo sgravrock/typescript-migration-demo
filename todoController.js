@@ -4,9 +4,6 @@
     '<input type="text" class="new-task-name" placeholder="new task">' +
     '<button class="add-task">Add</button>' +
     '<ol></ol>';
-  var taskTemplate =
-    '<span class="title"></span>' +
-    '<button>Remove</button>';
 
   function TodoController() {
     var that = this;
@@ -45,20 +42,17 @@
 
   TodoController.prototype._removeClicked = function(taskEl, index) {
     taskEl.parentNode.removeChild(taskEl);
-    this._tasks.splice(index, 1);
-    TodoMvc.storageService.saveTasks(this._tasks);
   };
 
   TodoController.prototype._addTaskToDom = function(title, index) {
     var that = this;
-    var li = document.createElement("li");
-    li.innerHTML = taskTemplate;
-    li.querySelector(".title").textContent = title;
-    li.querySelector("button").addEventListener("click", function (e) {
-      e.preventDefault();
-      that._removeClicked(li, index);
-    });
-    this._list.appendChild(li);
+    var taskController = new TodoMvc.TaskController(title);
+    taskController.appendTo(this._list);
+
+    taskController.onRemove = function() {
+      that._tasks.splice(index, 1);
+      TodoMvc.storageService.saveTasks(that._tasks);
+    };
   };
 
   TodoMvc.TodoController = TodoController;
