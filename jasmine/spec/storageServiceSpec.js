@@ -1,16 +1,16 @@
-define(["../../storageService"], function(subject) {
+define(["../../storageService"], function(StorageService) {
   describe("storageService", function() {
     "use strict";
 
     beforeEach(function() {
       var that = this;
       this.items = {};
-      subject._localStorage = {
+      var localStorage = {
         getItem: jasmine.createSpy("getItem"),
         setItem: jasmine.createSpy("setItem")
       };
 
-      subject._localStorage.getItem.and.callFake(function(k) {
+      localStorage.getItem.and.callFake(function(k) {
         if (that.items.hasOwnProperty(k)) {
           return that.items[k];
         }
@@ -18,28 +18,30 @@ define(["../../storageService"], function(subject) {
         return null;
       });
 
-      subject._localStorage.setItem.and.callFake(function(k, v) {
+      localStorage.setItem.and.callFake(function(k, v) {
         that.items[k] = v.toString();
       });
+
+      this.subject = new StorageService(localStorage);
     });
 
     describe("loadTasks", function() {
       describe("when there is no task data", function() {
         it("returns an empty list", function() {
-          expect(subject.loadTasks()).toEqual([]);
+          expect(this.subject.loadTasks()).toEqual([]);
         });
       });
 
       describe("When there is task data", function() {
         beforeEach(function() {
-          subject.saveTasks([
+          this.subject.saveTasks([
             "Task 0",
             "Task 1"
           ]);
         });
 
         it("returns the tasks", function() {
-          expect(subject.loadTasks()).toEqual([
+          expect(this.subject.loadTasks()).toEqual([
             "Task 0",
             "Task 1"
           ]);
@@ -49,12 +51,12 @@ define(["../../storageService"], function(subject) {
 
     describe("saveTasks", function() {
       it("saves the task count", function() {
-        subject.saveTasks(["a", "b"]);
+        this.subject.saveTasks(["a", "b"]);
         expect(this.items["ntasks"]).toEqual("2");
       });
 
       it("saves the task titles", function() {
-        subject.saveTasks(["a", "b"]);
+        this.subject.saveTasks(["a", "b"]);
         expect(this.items["task0title"]).toEqual("a");
         expect(this.items["task1title"]).toEqual("b");
       });
