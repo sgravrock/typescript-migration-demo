@@ -1,4 +1,4 @@
-(function() {
+define(function() {
   "use strict";
   var template =
     '<input type="text" class="new-task-name" placeholder="new task">' +
@@ -55,5 +55,5 @@
     };
   };
 
-  TodoMvc.TodoController = TodoController;
-}());
+  return TodoController;
+});

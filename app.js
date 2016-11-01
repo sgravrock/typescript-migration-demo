@@ -1,7 +1,7 @@
-define(function() {
+define(["./todoController"], function(TodoController) {
   return {
     run: function(container) {
-      new TodoMvc.TodoController().appendTo(container);
+      new TodoController().appendTo(container);
     }
   };
 });
