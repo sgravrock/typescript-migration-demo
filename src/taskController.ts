@@ -1,4 +1,4 @@
-var template =
+const template =
   '<span class="title"></span>' +
   '<button>Remove</button>';
 
@@ -6,17 +6,14 @@ export class TaskController {
   private _dom: Element;
 
   constructor(title: string) {
-    var that = this;
     this._dom = document.createElement("li");
     this._dom.innerHTML = template;
     this._dom.querySelector(".title").textContent = title;
 
-    this._dom.querySelector("button").addEventListener("click",
-        function (e) {
-          e.preventDefault();
-          that.remove();
-        }
-    );
+    this._dom.querySelector("button").addEventListener("click", (e: Event) => {
+      e.preventDefault();
+      this.remove();
+    });
   }
 
   appendTo(parent: Element): void {
@@ -29,5 +26,6 @@ export class TaskController {
   }
 
   onRemove(): void {
+    // Replaceable
   };
 }

@@ -1,0 +1,12 @@
+{
+  "extends": "tslint:latest",
+  "rules": {
+    "quotemark": false,
+    "trailing-comma": false,
+    "member-access": false,
+    "variable-name": [true, "check-format", "allow-leading-underscore"],
+    "no-consecutive-blank-lines": false,
+
+    "no-require-imports": true
+  }
+}
