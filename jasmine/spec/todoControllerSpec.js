@@ -1,6 +1,6 @@
-define(["../../scripts/todoController"], function(tc) {
+define(["todoController"], function(tc) {
   var TodoController = tc.TodoController;
-  
+
   describe("TodoController", function() {
     beforeEach(function() {
       var that = this;

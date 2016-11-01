@@ -3,7 +3,7 @@
     "module": "amd",
     "noImplicitAny": true,
     "sourceMap": true,
-    "outDir": "../scripts"
+    "outFile": "../scripts/todoMvc.js"
   },
   "include": ["*.ts"]
 }

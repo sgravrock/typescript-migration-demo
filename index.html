@@ -5,7 +5,12 @@
 <body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.js"></script>
   <script>
-    require(["scripts/app"], function(app) {
+    requirejs.config({
+      bundles: {
+        "scripts/todoMvc": ["app"]
+      }
+    });
+    require(["app"], function(app) {
       app.run(document.body);
     });
   </script>
