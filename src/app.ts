@@ -1,5 +1,5 @@
-import TodoController = require("./todoController");
-import StorageService = require("./storageService");
+import { StorageService } from "./storageService";
+import { TodoController } from "./todoController";
 
 export = {
   run(container: Element): void {

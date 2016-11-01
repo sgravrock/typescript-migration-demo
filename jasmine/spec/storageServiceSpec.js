@@ -1,4 +1,6 @@
-define(["../../scripts/storageService"], function(StorageService) {
+define(["../../scripts/storageService"], function(storage) {
+  var StorageService = storage.StorageService;
+  
   describe("storageService", function() {
     "use strict";
 

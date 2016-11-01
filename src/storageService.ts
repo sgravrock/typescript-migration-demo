@@ -1,6 +1,6 @@
 /// <reference path="storageService.d.ts" />
 
-class StorageService implements IStorageService {
+export class StorageService implements IStorageService {
   // For the definition of Storage and other browser types, see
   // https://github.com/Microsoft/TypeScript/blob/master/src/lib/dom.generated.d.ts
   private localStorage: Storage;
@@ -27,5 +27,3 @@ class StorageService implements IStorageService {
     }
   }
 }
-
-export = StorageService;

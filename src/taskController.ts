@@ -2,7 +2,7 @@ const template =
   '<span class="title"></span>' +
   '<button>Remove</button>';
 
-class TaskController {
+export class TaskController {
   private title: string;
   private dom: Element;
 
@@ -31,5 +31,3 @@ class TaskController {
     // Replaceable
   }
 }
-
-export = TaskController;

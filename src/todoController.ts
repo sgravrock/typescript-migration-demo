@@ -1,11 +1,11 @@
-import TaskController = require("./taskController");
+import { TaskController } from "./taskController";
 
 const template =
   '<input type="text" class="new-task-name" placeholder="new task">' +
   '<button class="add-task">Add</button>' +
   '<ol></ol>';
 
-class TodoController {
+export class TodoController {
   private storageService: IStorageService;
   private dom: Element;
   private newTaskField: HTMLInputElement;
@@ -56,5 +56,3 @@ class TodoController {
     };
   }
 }
-
-export = TodoController;
