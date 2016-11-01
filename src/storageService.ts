@@ -1,4 +1,7 @@
-/// <reference path="storageService.d.ts" />
+export interface IStorageService {
+  loadTasks(): string[];
+  saveTasks(tasks: string[]): void;
+}
 
 export class StorageService implements IStorageService {
   // For the definition of Storage and other browser types, see

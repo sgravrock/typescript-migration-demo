@@ -4,7 +4,7 @@
     "quotemark": false,
     "trailing-comma": false,
     "member-access": false,
-    "no-reference": false,
-    "no-require-imports": true
+    "no-require-imports": true,
+    "no-consecutive-blank-lines": false
   }
 }

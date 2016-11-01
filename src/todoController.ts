@@ -1,3 +1,4 @@
+import { IStorageService } from "./storageService";
 import { TaskController } from "./taskController";
 
 const template =
