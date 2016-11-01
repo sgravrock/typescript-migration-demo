@@ -1,7 +1,7 @@
-define(["./todoController"], function(TodoController) {
+define(["./todoController", "./storageService"], function(TodoController, storageService) {
   return {
     run: function(container) {
-      new TodoController().appendTo(container);
+      new TodoController(storageService).appendTo(container);
     }
   };
 });

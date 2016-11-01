@@ -1,13 +1,14 @@
-define(["./taskController", "./storageService"], function(TaskController, storageService) {
+define(["./taskController"], function(TaskController) {
   "use strict";
   var template =
     '<input type="text" class="new-task-name" placeholder="new task">' +
     '<button class="add-task">Add</button>' +
     '<ol></ol>';
 
-  function TodoController() {
+  function TodoController(storageService) {
     var that = this;
     var i;
+    this._storageService = storageService;
     this._dom = document.createElement("div");
     this._dom.className = "todo-controller";
     this._dom.innerHTML = template;
@@ -36,7 +37,7 @@ define(["./taskController", "./storageService"], function(TaskController, storag
     var taskName = this._newTaskField.value;
     this._addTaskToDom(taskName, this._tasks.length);
     this._tasks.push(taskName);
-    storageService.saveTasks(this._tasks);
+    this._storageService.saveTasks(this._tasks);
     this._newTaskField.value = "";
   };
 
@@ -51,7 +52,7 @@ define(["./taskController", "./storageService"], function(TaskController, storag
 
     taskController.onRemove = function() {
       that._tasks.splice(index, 1);
-      storageService.saveTasks(that._tasks);
+      that._storageService.saveTasks(that._tasks);
     };
   };
 

@@ -1,16 +1,18 @@
-define(["../../todoController", "../../storageService"], function(TodoController, storageService) {
+define(["../../todoController"], function(TodoController) {
   describe("TodoController", function() {
     beforeEach(function() {
       var that = this;
       this.existingTasks = [];
-      spyOn(storageService, "saveTasks");
-      spyOn(storageService, "loadTasks").and.callFake(function() {
-        return that.existingTasks;
-      });
+      this.storageService = {
+        saveTasks: jasmine.createSpy("saveTasks"),
+        loadTasks: function() {
+          return that.existingTasks;
+        }
+      };
 
       this.setup = function() {
         this.dom = document.createElement("div");
-        this.subject = new TodoController();
+        this.subject = new TodoController(this.storageService);
         this.subject.appendTo(this.dom);
         this.textField = this.dom.querySelector("input.new-task-name");
         this.addButton = this.dom.querySelector(".add-task");
@@ -41,7 +43,7 @@ define(["../../todoController", "../../storageService"], function(TodoController
       });
 
       it("saves the task to local storage", function() {
-        expect(storageService.saveTasks).toHaveBeenCalledWith([
+        expect(this.storageService.saveTasks).toHaveBeenCalledWith([
           "New Task 1"
         ]);
       });
@@ -67,7 +69,7 @@ define(["../../todoController", "../../storageService"], function(TodoController
         });
 
         it("saves all the tasks", function() {
-          expect(storageService.saveTasks).toHaveBeenCalledWith([
+          expect(this.storageService.saveTasks).toHaveBeenCalledWith([
             "Existing Task 1",
             "Existing Task 2",
             "Another Task"
@@ -90,7 +92,7 @@ define(["../../todoController", "../../storageService"], function(TodoController
       });
 
       it("saves the updated task list", function() {
-        expect(storageService.saveTasks).toHaveBeenCalledWith([
+        expect(this.storageService.saveTasks).toHaveBeenCalledWith([
           "Existing Task 2"
         ]);
       });
