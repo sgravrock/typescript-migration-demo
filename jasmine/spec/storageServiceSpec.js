@@ -3,14 +3,20 @@ describe("storageService", function() {
   beforeEach(function() {
     var that = this;
     this.items = {};
-    spyOn(localStorage, "getItem").and.callFake(function(k) {
+    TodoMvc.storageService._localStorage = {
+      getItem: jasmine.createSpy("getItem"),
+      setItem: jasmine.createSpy("setItem")
+    };
+
+    TodoMvc.storageService._localStorage.getItem.and.callFake(function(k) {
       if (that.items.hasOwnProperty(k)) {
         return that.items[k];
       }
 
       return null;
     });
-    spyOn(localStorage, "setItem").and.callFake(function(k, v) {
+
+    TodoMvc.storageService._localStorage.setItem.and.callFake(function(k, v) {
       that.items[k] = v.toString();
     });
   });
