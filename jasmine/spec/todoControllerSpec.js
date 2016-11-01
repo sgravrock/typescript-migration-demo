@@ -30,7 +30,7 @@ describe("TodoController", function() {
     });
 
     it("shows the new task", function() {
-      var item = this.dom.querySelector("li");
+      var item = this.dom.querySelector("li .title");
       expect(item).toBeTruthy();
       expect(item.textContent).toEqual("New Task 1");
     });
@@ -53,10 +53,10 @@ describe("TodoController", function() {
     });
 
     it("shows the existing tasks", function() {
-      var lis = this.dom.querySelectorAll("li");
-      expect(lis.length).toEqual(2);
-      expect(lis[0].textContent).toEqual("Existing Task 1");
-      expect(lis[1].textContent).toEqual("Existing Task 2");
+      var titles = this.dom.querySelectorAll("li .title");
+      expect(titles.length).toEqual(2);
+      expect(titles[0].textContent).toEqual("Existing Task 1");
+      expect(titles[1].textContent).toEqual("Existing Task 2");
     });
 
     describe("When the user adds another task", function() {
@@ -72,6 +72,26 @@ describe("TodoController", function() {
           "Another Task"
         ]);
       });
+    });
+  });
+
+  describe("When the user clicks a task's Remove button", function() {
+    beforeEach(function() {
+      this.existingTasks = ["Existing Task 1", "Existing Task 2"];
+      this.setup();
+      this.dom.querySelector("li button").click();
+    });
+
+    it("removes the task from the DOM", function() {
+      var titles = this.dom.querySelectorAll("li .title");
+      expect(titles.length).toEqual(1);
+      expect(titles[0].textContent).toEqual("Existing Task 2");
+    });
+
+    it("saves the updated task list", function() {
+      expect(TodoMvc.storageService.saveTasks).toHaveBeenCalledWith([
+        "Existing Task 2"
+      ]);
     });
   });
 });
