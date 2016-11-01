@@ -1,4 +1,4 @@
-define(["../../storageService"], function(StorageService) {
+define(["../../scripts/storageService"], function(StorageService) {
   describe("storageService", function() {
     "use strict";
 

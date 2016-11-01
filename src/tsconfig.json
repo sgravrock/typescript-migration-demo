@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "outDir": "../scripts"
+  },
+  "files": [
+    "storageService.ts"
+  ]
+}
