@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "outDir": "../scripts"
+  },
+  "include": ["*.ts"]
+}

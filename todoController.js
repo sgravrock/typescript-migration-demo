@@ -1,5 +1,6 @@
-define(["./taskController"], function(TaskController) {
+define(["./scripts/taskController"], function(tc) {
   "use strict";
+  var TaskController = tc.TaskController;
   var template =
     '<input type="text" class="new-task-name" placeholder="new task">' +
     '<button class="add-task">Add</button>' +
