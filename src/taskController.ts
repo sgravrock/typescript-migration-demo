@@ -1,34 +1,36 @@
-define(function() {
-  "use strict";
-  var template =
-    '<span class="title"></span>' +
-    '<button>Remove</button>';
+var template =
+  '<span class="title"></span>' +
+  '<button>Remove</button>';
 
-  function TaskController(title) {
+class TaskController {
+  private _title: string;
+  private _dom: Element;
+
+  constructor(title: string) {
     var that = this;
+    this._title = title;
     this._dom = document.createElement("li");
     this._dom.innerHTML = template;
     this._dom.querySelector(".title").textContent = title;
-
     this._dom.querySelector("button").addEventListener("click",
         function (e) {
           e.preventDefault();
           that.remove();
         }
     );
-  };
+  }
 
-  TaskController.prototype.appendTo = function(parent) {
+  appendTo(parent: Element): void {
     parent.appendChild(this._dom);
-  };
+  }
 
-  TaskController.prototype.remove = function() {
+  remove(): void {
     this._dom.parentNode.removeChild(this._dom);
     this.onRemove();
-  };
+  }
 
-  TaskController.prototype.onRemove = function(parent) {
-  };
+  onRemove(): void {
+  }
+}
 
-  return TaskController;
-});
+export = TaskController;

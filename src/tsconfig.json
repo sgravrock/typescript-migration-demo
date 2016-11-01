@@ -5,7 +5,5 @@
     "sourceMap": true,
     "outDir": "../scripts"
   },
-  "files": [
-    "storageService.ts"
-  ]
+  "include": ["*.ts"]
 }

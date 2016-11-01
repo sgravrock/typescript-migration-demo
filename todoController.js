@@ -1,4 +1,4 @@
-define(["./taskController"], function(TaskController) {
+define(["./scripts/taskController"], function(TaskController) {
   "use strict";
   var template =
     '<input type="text" class="new-task-name" placeholder="new task">' +
