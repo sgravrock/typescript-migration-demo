@@ -3,11 +3,14 @@
   <title>Todo MVC</title>
 </head>
 <body>
-  <script src="app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.js"></script>
+  <script src="prologue.js"></script>
   <script src="todoController.js"></script>
   <script src="taskController.js"></script>
   <script src="storageService.js"></script>
   <script>
-    TodoMvc.app.run(document.body);
+    require(["app"], function(app) {
+      app.run(document.body);
+    });
   </script>
 </body>

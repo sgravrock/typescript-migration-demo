@@ -1,10 +1,7 @@
-(function () {
-  "use strict";
-  window.TodoMvc = {
-    app: {
-      run: function(container) {
-        new TodoMvc.TodoController().appendTo(container);
-      }
+define(function() {
+  return {
+    run: function(container) {
+      new TodoMvc.TodoController().appendTo(container);
     }
   };
-}());
+});
