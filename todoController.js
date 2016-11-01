@@ -17,6 +17,14 @@
         event.preventDefault();
         that._addClicked();
       });
+
+    this._tasks = TodoMvc.storageService.loadTasks();
+
+    if (this._tasks) {
+      this._tasks.forEach(function(title) {
+        that._addTaskToDom(title);
+      });
+    }
   };
 
   TodoController.prototype.appendTo = function(parent) {
@@ -24,10 +32,17 @@
   };
 
   TodoController.prototype._addClicked = function() {
-    var li = document.createElement("li");
-    li.textContent = this._newTaskField.value;
-    this._list.appendChild(li);
+    var taskName = this._newTaskField.value;
+    this._addTaskToDom(taskName);
+    this._tasks.push(taskName);
+    TodoMvc.storageService.saveTasks(this._tasks);
     this._newTaskField.value = "";
+  };
+
+  TodoController.prototype._addTaskToDom = function(title) {
+    var li = document.createElement("li");
+    li.textContent = title;
+    this._list.appendChild(li);
   };
 
   TodoMvc.TodoController = TodoController;
