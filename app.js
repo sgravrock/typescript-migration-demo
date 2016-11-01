@@ -1,4 +1,5 @@
-define(["./todoController", "./storageService"], function(TodoController, StorageService) {
+define(["./todoController", "./scripts/storageService"], function(TodoController, ss) {
+  var StorageService = ss.StorageService;
   return {
     run: function(container) {
       var storage = new StorageService(localStorage);
