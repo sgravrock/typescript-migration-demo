@@ -1,10 +1,10 @@
-define(["../../todoController"], function(TodoController) {
+define(["../../todoController", "../../storageService"], function(TodoController, storageService) {
   describe("TodoController", function() {
     beforeEach(function() {
       var that = this;
       this.existingTasks = [];
-      spyOn(TodoMvc.storageService, "saveTasks");
-      spyOn(TodoMvc.storageService, "loadTasks").and.callFake(function() {
+      spyOn(storageService, "saveTasks");
+      spyOn(storageService, "loadTasks").and.callFake(function() {
         return that.existingTasks;
       });
 
@@ -41,7 +41,7 @@ define(["../../todoController"], function(TodoController) {
       });
 
       it("saves the task to local storage", function() {
-        expect(TodoMvc.storageService.saveTasks).toHaveBeenCalledWith([
+        expect(storageService.saveTasks).toHaveBeenCalledWith([
           "New Task 1"
         ]);
       });
@@ -67,7 +67,7 @@ define(["../../todoController"], function(TodoController) {
         });
 
         it("saves all the tasks", function() {
-          expect(TodoMvc.storageService.saveTasks).toHaveBeenCalledWith([
+          expect(storageService.saveTasks).toHaveBeenCalledWith([
             "Existing Task 1",
             "Existing Task 2",
             "Another Task"
@@ -90,7 +90,7 @@ define(["../../todoController"], function(TodoController) {
       });
 
       it("saves the updated task list", function() {
-        expect(TodoMvc.storageService.saveTasks).toHaveBeenCalledWith([
+        expect(storageService.saveTasks).toHaveBeenCalledWith([
           "Existing Task 2"
         ]);
       });

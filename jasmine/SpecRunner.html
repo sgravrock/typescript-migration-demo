@@ -13,15 +13,14 @@
 
   <!-- include source files here... -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.js"></script>
-  <script src="../prologue.js"></script>
-  <script src="../storageService.js"></script>
 
-  <!-- include spec files here... -->
-  <script src="spec/storageServiceSpec.js"></script>
   <script>
-    require(["spec/appSpec", "spec/todoControllerSpec"], function() {
-      startJasmine();
-    });
+    var specs = [
+      "spec/appSpec",
+      "spec/todoControllerSpec",
+      "spec/storageServiceSpec"
+    ];
+    require(specs, startJasmine);
   </script>
 </head>
 

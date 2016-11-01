@@ -1,4 +1,4 @@
-define(["./taskController"], function(TaskController) {
+define(["./taskController", "./storageService"], function(TaskController, storageService) {
   "use strict";
   var template =
     '<input type="text" class="new-task-name" placeholder="new task">' +
@@ -19,7 +19,7 @@ define(["./taskController"], function(TaskController) {
         that._addClicked();
       });
 
-    this._tasks = TodoMvc.storageService.loadTasks();
+    this._tasks = storageService.loadTasks();
 
     if (this._tasks) {
       for (i = 0; i < this._tasks.length; i++) {
@@ -36,7 +36,7 @@ define(["./taskController"], function(TaskController) {
     var taskName = this._newTaskField.value;
     this._addTaskToDom(taskName, this._tasks.length);
     this._tasks.push(taskName);
-    TodoMvc.storageService.saveTasks(this._tasks);
+    storageService.saveTasks(this._tasks);
     this._newTaskField.value = "";
   };
 
@@ -51,7 +51,7 @@ define(["./taskController"], function(TaskController) {
 
     taskController.onRemove = function() {
       that._tasks.splice(index, 1);
-      TodoMvc.storageService.saveTasks(that._tasks);
+      storageService.saveTasks(that._tasks);
     };
   };
 

@@ -1,7 +1,7 @@
-(function() {
+define(function() {
   "use strict";
 
-  TodoMvc.storageService = {
+  return {
     loadTasks: function() {
       var tasks = [];
       var n = 0 + this._localStorage.getItem("ntasks");
