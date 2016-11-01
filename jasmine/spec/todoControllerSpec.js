@@ -1,4 +1,4 @@
-define(["../../todoController"], function(TodoController) {
+define(["../../scripts/todoController"], function(TodoController) {
   describe("TodoController", function() {
     beforeEach(function() {
       var that = this;
