@@ -1,64 +1,58 @@
 import TaskController = require("./taskController");
 
-var template =
+const template =
   '<input type="text" class="new-task-name" placeholder="new task">' +
   '<button class="add-task">Add</button>' +
   '<ol></ol>';
 
 class TodoController {
-  private _storageService: IStorageService;
-  private _dom: Element;
-  private _newTaskField: HTMLInputElement;
-  private _list: Element;
-  private _tasks: string[];
+  private storageService: IStorageService;
+  private dom: Element;
+  private newTaskField: HTMLInputElement;
+  private list: Element;
+  private tasks: string[];
 
   constructor(storageService: IStorageService) {
-    var that = this;
-    this._storageService = storageService;
-    this._dom = document.createElement("div");
-    this._dom.className = "todo-controller";
-    this._dom.innerHTML = template;
-    this._newTaskField = <HTMLInputElement>this._dom.querySelector(".new-task-name");
-    this._list = this._dom.querySelector("ol");
-    var btn = <HTMLButtonElement>this._dom.querySelector(".add-task")
-    btn.addEventListener("click", function(event) {
+    this.storageService = storageService;
+    this.dom = document.createElement("div");
+    this.dom.className = "todo-controller";
+    this.dom.innerHTML = template;
+    this.newTaskField = <HTMLInputElement> this.dom.querySelector(".new-task-name");
+    this.list = this.dom.querySelector("ol");
+    const btn = <HTMLButtonElement> this.dom.querySelector(".add-task");
+    btn.addEventListener("click", (event) => {
       event.preventDefault();
-      that._addClicked();
+      this._addClicked();
     });
 
-    this._tasks = storageService.loadTasks();
+    this.tasks = storageService.loadTasks();
 
-    if (this._tasks) {
-      for (var i = 0; i < this._tasks.length; i++) {
-        this._addTaskToDom(this._tasks[i], i);
+    if (this.tasks) {
+      for (let i = 0; i < this.tasks.length; i++) {
+        this._addTaskToDom(this.tasks[i], i);
       }
     }
   }
 
   appendTo(parent: Element): void {
-    parent.appendChild(this._dom);
+    parent.appendChild(this.dom);
   }
 
   private _addClicked(): void {
-    var taskName = this._newTaskField.value;
-    this._addTaskToDom(taskName, this._tasks.length);
-    this._tasks.push(taskName);
-    this._storageService.saveTasks(this._tasks);
-    this._newTaskField.value = "";
-  }
-
-  private _removeClicked(taskEl: Element, index: number) {
-    taskEl.parentNode.removeChild(taskEl);
+    const taskName = this.newTaskField.value;
+    this._addTaskToDom(taskName, this.tasks.length);
+    this.tasks.push(taskName);
+    this.storageService.saveTasks(this.tasks);
+    this.newTaskField.value = "";
   }
 
   private _addTaskToDom(title: string, index: number) {
-    var that = this;
-    var taskController = new TaskController(title);
-    taskController.appendTo(this._list);
+    const taskController = new TaskController(title);
+    taskController.appendTo(this.list);
 
-    taskController.onRemove = function() {
-      that._tasks.splice(index, 1);
-      that._storageService.saveTasks(that._tasks);
+    taskController.onRemove = () => {
+      this.tasks.splice(index, 1);
+      this.storageService.saveTasks(this.tasks);
     };
   }
 }
