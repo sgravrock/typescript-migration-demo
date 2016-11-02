@@ -9,7 +9,7 @@ describe("app", () => {
   });
 
   it("shows a todo controller", () => {
-    var root = this.dom.querySelector(".todo-controller");
+    const root = this.dom.querySelector(".todo-controller");
     expect(root).toBeTruthy();
   });
 });

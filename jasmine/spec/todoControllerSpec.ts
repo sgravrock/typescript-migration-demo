@@ -3,12 +3,11 @@ import { TodoController } from "../../src/todoController";
 
 describe("TodoController", () => {
   beforeEach(() => {
-    var that = this;
     this.existingTasks = [];
     this.storageService = {
       saveTasks: jasmine.createSpy("saveTasks"),
       loadTasks: () => {
-        return that.existingTasks;
+        return this.existingTasks;
       }
     };
 
@@ -35,7 +34,7 @@ describe("TodoController", () => {
     });
 
     it("shows the new task", () => {
-      var item = this.dom.querySelector("li .title");
+      const item = this.dom.querySelector("li .title");
       expect(item).toBeTruthy();
       expect(item.textContent).toEqual("New Task 1");
     });
@@ -58,7 +57,7 @@ describe("TodoController", () => {
     });
 
     it("shows the existing tasks", () => {
-      var titles = this.dom.querySelectorAll("li .title");
+      const titles = this.dom.querySelectorAll("li .title");
       expect(titles.length).toEqual(2);
       expect(titles[0].textContent).toEqual("Existing Task 1");
       expect(titles[1].textContent).toEqual("Existing Task 2");
@@ -88,7 +87,7 @@ describe("TodoController", () => {
     });
 
     it("removes the task from the DOM", () => {
-      var titles = this.dom.querySelectorAll("li .title");
+      const titles = this.dom.querySelectorAll("li .title");
       expect(titles.length).toEqual(1);
       expect(titles[0].textContent).toEqual("Existing Task 2");
     });

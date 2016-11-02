@@ -5,9 +5,8 @@ describe("storageService", () => {
   "use strict";
 
   beforeEach(() => {
-    var that = this;
     this.items = {};
-    var localStorage = {
+    const localStorage = {
       getItem: jasmine.createSpy("getItem"),
       setItem: jasmine.createSpy("setItem"),
 
@@ -18,16 +17,16 @@ describe("storageService", () => {
       removeItem: jasmine.createSpy("removeItem"),
     };
 
-    localStorage.getItem.and.callFake(function(k: string) {
-      if (that.items.hasOwnProperty(k)) {
-        return that.items[k];
+    localStorage.getItem.and.callFake((k: string) => {
+      if (this.items.hasOwnProperty(k)) {
+        return this.items[k];
       }
 
       return null;
     });
 
-    localStorage.setItem.and.callFake(function(k: string, v: any) {
-      that.items[k] = v.toString();
+    localStorage.setItem.and.callFake((k: string, v: any) => {
+      this.items[k] = v.toString();
     });
 
     this.subject = new StorageService(localStorage);
