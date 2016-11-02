@@ -1,14 +1,14 @@
 /// <reference path="../../typings/index.d.ts" />
 import { run } from "../../src/app"
-describe("app", function() {
+describe("app", () => {
   "use strict";
 
-  beforeEach(function() {
+  beforeEach(() => {
     this.dom = document.createElement("div");
     run(this.dom);
   });
 
-  it("shows a todo controller", function() {
+  it("shows a todo controller", () => {
     var root = this.dom.querySelector(".todo-controller");
     expect(root).toBeTruthy();
   });

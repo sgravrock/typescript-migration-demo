@@ -1,10 +1,10 @@
 /// <reference path="../../typings/index.d.ts" />
 import { StorageService } from "../../src/storageService";
 
-describe("storageService", function() {
+describe("storageService", () => {
   "use strict";
 
-  beforeEach(function() {
+  beforeEach(() => {
     var that = this;
     this.items = {};
     var localStorage = {
@@ -33,22 +33,22 @@ describe("storageService", function() {
     this.subject = new StorageService(localStorage);
   });
 
-  describe("loadTasks", function() {
-    describe("when there is no task data", function() {
-      it("returns an empty list", function() {
+  describe("loadTasks", () => {
+    describe("when there is no task data", () => {
+      it("returns an empty list", () => {
         expect(this.subject.loadTasks()).toEqual([]);
       });
     });
 
-    describe("When there is task data", function() {
-      beforeEach(function() {
+    describe("When there is task data", () => {
+      beforeEach(() => {
         this.subject.saveTasks([
           "Task 0",
           "Task 1"
         ]);
       });
 
-      it("returns the tasks", function() {
+      it("returns the tasks", () => {
         expect(this.subject.loadTasks()).toEqual([
           "Task 0",
           "Task 1"
@@ -57,13 +57,13 @@ describe("storageService", function() {
     });
   });
 
-  describe("saveTasks", function() {
-    it("saves the task count", function() {
+  describe("saveTasks", () => {
+    it("saves the task count", () => {
       this.subject.saveTasks(["a", "b"]);
       expect(this.items["ntasks"]).toEqual("2");
     });
 
-    it("saves the task titles", function() {
+    it("saves the task titles", () => {
       this.subject.saveTasks(["a", "b"]);
       expect(this.items["task0title"]).toEqual("a");
       expect(this.items["task1title"]).toEqual("b");
