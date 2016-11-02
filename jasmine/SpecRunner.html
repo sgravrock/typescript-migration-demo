@@ -15,16 +15,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.js"></script>
 
   <script>
-    requirejs.config({
-      bundles: {
-        "../scripts/todoMvc": ["app", "storageService", "todoController", "taskController"]
-      }
-    });
-
     var specs = [
-      "spec/appSpec",
-      "spec/todoControllerSpec",
-      "spec/storageServiceSpec"
+      "scripts/jasmine/spec/appSpec",
+      "scripts/jasmine/spec/todoControllerSpec",
+      "scripts/jasmine/spec/storageServiceSpec"
     ];
     require(specs, startJasmine);
   </script>
