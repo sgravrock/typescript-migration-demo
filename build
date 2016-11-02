@@ -2,5 +2,6 @@
 
 rm -f scripts/*
 rm -rf jasmine/spec/scripts/jasmine jasmine/spec/scripts/src
-tsc -p src -p jasmine/spec
+tsc -p src
+tsc -p jasmine/spec
 tslint src/*.ts
